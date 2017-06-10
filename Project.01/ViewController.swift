@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var idField: UITextField!
     @IBOutlet weak var pwField: UITextField!
     
-    var ref : FIRDatabaseReference!
+    //var ref : FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,56 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func signInButton(_ sender: UIButton) {
+        var ref = FIRDatabase.database().reference()
+        
+        if let userId = idField.text {
+            print(userId)
+            
+            ref.child("users").child(userId).observeSingleEvent(of: .value, with: {snapshot in
+                if !snapshot.exists() {
+                    let alert = UIAlertController(title: "Login", message: "로그인 되었습니다.", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "메인 페이지로 이동", style: .default, handler: {
+                        // segue. // 페이지 이동
+                        print("aa")
+                    })
+                
+                })
+                
+                /*
+                if lampOn {
+                    let alert = UIAlertController(title: "알림", message: "램프가 끄시겠습니까?", preferredStyle: .alert)
+                    
+                    // handler 타입을 미리 알고 있기 때문에 정의 필요 없음, 기본으로 -> void로 되어 있는데 이럴 경우에는 생략 가능
+                    alert.addAction(UIAlertAction(title: "네", style: .default, handler: {
+                        (action) in
+                        self.lampOn = false
+                        self.lampImageView.image = UIImage(named: "lamp-off.png")
+                    }
+                        
+                    ))
+                    
+                    alert.addAction(UIAlertAction(title: "아니오", style: .cancel, handler: nil))
+                    
+                    present(alert, animated: true, completion: nil)
+                }
+                
+                override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                    // Get the new view controller using segue.destinationViewController.
+                    // Pass the selected object to the new view controller.
+                    if let editVC = segue.destination as? EditViewController { //EditViewController를 형변환 해서 destination에 넣어준다
+                        //editVC.segueIdLabel.text = segue.identifier
+                        editVC.segueId = segue.identifier!
+                        editVC.message = messageTextField.text!
+                        editVC.delegate = self
+                    }
+                }
+                
+                showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.")
+                */
+        }
+    }
     
 }
 
