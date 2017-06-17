@@ -34,6 +34,17 @@ class ViewController: UIViewController {
             ref.child("users").child(userId).observeSingleEvent(of: .value, with: {snapshot in
                 if snapshot.exists() {
                     print("exist")
+                    let snapValue = snapshot.value as? [String : String]
+                    print (snapValue?["id"]!)
+//                    if let id = snapshot.value["id"] as? String{
+//                        if id == idField.text {
+//                            print("동일한 id가 있습니다")
+//                        }
+//
+//                    }
+//                    if snapshot.value["id"] as? String == idField.text {
+//                        print("동일한 id가 있습니다")
+//                    }
                     let alert = UIAlertController(title: "Login", message: "로그인 되었습니다.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "메인 페이지로 이동", style: .default, handler: {
@@ -46,6 +57,7 @@ class ViewController: UIViewController {
                         //self.performSegue(withIdentifier: "segToMain", sender: nil)
                         //print("aa")
                     }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     
                     self.present(alert, animated: true, completion: nil)
 //                    
