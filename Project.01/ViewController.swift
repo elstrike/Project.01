@@ -32,16 +32,40 @@ class ViewController: UIViewController {
             print(userId)
             
             ref.child("users").child(userId).observeSingleEvent(of: .value, with: {snapshot in
-                if !snapshot.exists() {
+                if snapshot.exists() {
+                    print("exist")
                     let alert = UIAlertController(title: "Login", message: "로그인 되었습니다.", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "메인 페이지로 이동", style: .default, handler: {
-                        // segue. // 페이지 이동
-                        print("aa")
-                    })
-                
-                })
-                
+                        (alert: UIAlertAction!) in
+                        //self.performSegueWithIdentifier("segueId", sender: self);
+                        self.performSegue(withIdentifier: "segToMain", sender: self)
+                        
+                        //(action: UIAlertAction) -> Void in
+                        //self.navigationController!.popViewController(animated: true)
+                        //self.performSegue(withIdentifier: "segToMain", sender: nil)
+                        //print("aa")
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+//                    
+//                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
+//                        (action: UIAlertAction) -> Void in
+//                        print("Cancel 버튼 클릭")
+//                    }))
+                }
+                else {
+                    let alert = UIAlertController(title: "Login Failed", message: "로그인이 실패되었습니다.\nID를 다시 확인해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        (action: UIAlertAction) -> Void in
+                        print("OK 버튼 클릭")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+}
                 /*
                 if lampOn {
                     let alert = UIAlertController(title: "알림", message: "램프가 끄시겠습니까?", preferredStyle: .alert)
@@ -73,10 +97,7 @@ class ViewController: UIViewController {
                 
                 showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.")
                 */
-        }
-    }
-    
-}
+
 
 
 

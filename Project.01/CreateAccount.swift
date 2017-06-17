@@ -41,14 +41,20 @@ class CreateAccount: UIViewController {
                     }
                 }
                 else {
-                    print(snapshot)
-                    if let firebaseDic = snapshot.value as? [String: AnyObject] {
-                        print(firebaseDic)
-                        let dbId = firebaseDic["id"]
-                        if dbId as! String == userId {
-                            print("true")
-                        }
-                    }
+                    let alert = UIAlertController(title: "Create Account Failed", message: "계정 생성이 실패되었습니다.\n 동일한 ID가 존재합니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+                        (action: UIAlertAction) -> Void in
+                        print("OK 버튼 클릭")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+//                    print(snapshot)
+//                    if let firebaseDic = snapshot.value as? [String: AnyObject] {
+//                        print(firebaseDic)
+//                        let dbId = firebaseDic["id"]
+//                        if dbId as! String == userId {
+//                            print("true")
+//                        }
+//                    }
                 }
             })
         }
