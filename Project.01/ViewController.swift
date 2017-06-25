@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             ref.child("users").child(userId).observeSingleEvent(of: .value, with: {snapshot in
                 if snapshot.exists() {
                     print("exist")
-                    let snapValue = snapshot.value as? [String : String]
+                    let snapValue = snapshot.value as? [String : String] // 값 가져오기
                     print (snapValue?["id"]!)
 //                    if let id = snapshot.value["id"] as? String{
 //                        if id == idField.text {
