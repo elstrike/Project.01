@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signInButton(_ sender: UIButton) {
-        var ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference()
         
         if let userId = idField.text {
             print(userId)
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
                 if snapshot.exists() {
                     print("exist")
                     let snapValue = snapshot.value as? [String : String] // 값 가져오기
-                    print (snapValue?["id"]!)
+                    print (snapValue?["id"]! as Any)
 //                    if let id = snapshot.value["id"] as? String{
 //                        if id == idField.text {
 //                            print("동일한 id가 있습니다")
@@ -77,6 +77,37 @@ class ViewController: UIViewController {
             })
         }
     }
+    
+    @IBAction func kakaoLoginBtn(_ sender: UIButton) {
+        let session = KOSession.shared()
+        print(KOSession.version())
+        print(session)
+        if let s = session {
+            if s.isOpen() {
+                s.close()
+            }
+            
+            s.open(completionHandler: {(error) in
+                if error == nil {
+                    print("No error")
+                    
+                    if s.isOpen() {
+                        print("Success")
+                    }
+                    else {
+                        print("Fail")
+                    }
+                }
+                else {
+                    print("Error login: \(error!)")
+                }
+            })
+        }
+        else {
+            print("Something wrong")
+        }
+    }
+    
 }
                 /*
                 if lampOn {

@@ -71,6 +71,16 @@
                                     <action selector="signInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XY8-tR-uBJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv3-Rq-s3P">
+                                <rect key="frame" x="120" y="347" width="134" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.55287545039999997" green="0.71411305459999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Kakao login"/>
+                                <connections>
+                                    <action selector="kakaoLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="alB-QT-yq9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
